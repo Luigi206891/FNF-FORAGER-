@@ -17,7 +17,6 @@ import flixel.tweens.FlxTween;
 import lime.utils.Assets;
 import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
-import WeekData;
 #if MODS_ALLOWED
 import sys.FileSystem;
 #end
@@ -53,7 +52,7 @@ class FreeplayState extends MusicBeatState
 	override function create()
 	{
 		Paths.clearStoredMemory();
-		//Paths.clearUnusedMemory();
+		Paths.clearUnusedMemory();
 		
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;
@@ -112,7 +111,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
-			songText.isMenuItem = true;
+			songText.isMenuItemCenter = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
 

@@ -15,7 +15,7 @@ class Main extends Sprite
 {
 	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
+	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with TitleState.
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
 	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
@@ -72,6 +72,9 @@ class Main extends Sprite
 		#end
 	
 		ClientPrefs.loadDefaultKeys();
+		// fuck you, persistent caching stays ON during sex
+		FlxGraphic.defaultPersist = true;
+		// the reason for this is we're going to be handling our own cache smartly
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
 		#if !mobile
@@ -86,7 +89,7 @@ class Main extends Sprite
 
 		#if html5
 		FlxG.autoPause = false;
-		FlxG.mouse.visible = false;
+		FlxG.mouse.visible = true;
 		#end
 	}
 }

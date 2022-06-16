@@ -42,11 +42,10 @@ class LoadingState extends MusicBeatState
 
 	var funkay:FlxSprite;
 	var loadBar:FlxSprite;
+
 	override function create()
 	{
-		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d);
-		add(bg);
-		funkay = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/funkay.png', IMAGE));
+		funkay = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/funkay/funkay.png', IMAGE));
 		funkay.setGraphicSize(0, FlxG.height);
 		funkay.updateHitbox();
 		funkay.antialiasing = ClientPrefs.globalAntialiasing;
@@ -65,19 +64,15 @@ class LoadingState extends MusicBeatState
 			{
 				callbacks = new MultiCallback(onLoad);
 				var introComplete = callbacks.add("introComplete");
-				/*if (PlayState.SONG != null) {
+				if (PlayState.SONG != null) {
 					checkLoadSong(getSongPath());
 					if (PlayState.SONG.needsVoices)
 						checkLoadSong(getVocalPath());
-				}*/
+				}
 				checkLibrary("shared");
 				if(directory != null && directory.length > 0 && directory != 'shared') {
 					checkLibrary(directory);
 				}
-
-				var fadeTime = 0.5;
-				FlxG.camera.fade(FlxG.camera.bgColor, fadeTime, true);
-				new FlxTimer().start(fadeTime + MIN_TIME, function(_) introComplete());
 			}
 		);
 	}
@@ -88,18 +83,16 @@ class LoadingState extends MusicBeatState
 		{
 			var library = Assets.getLibrary("songs");
 			final symbolPath = path.split(":").pop();
-			// @:privateAccess
-			// library.types.set(symbolPath, SOUND);
-			// @:privateAccess
-			// library.pathGroups.set(symbolPath, [library.__cacheBreak(symbolPath)]);
+			//@:privateAccess
+			//library.types.set(symbolPath, SOUND);
+			//@:privateAccess
+			//library.pathGroups.set(symbolPath, [library.__cacheBreak(symbolPath)]);
 			var callback = callbacks.add("song:" + path);
 			Assets.loadSound(path).onComplete(function (_) { callback(); });
 		}
 	}
-	
+
 	function checkLibrary(library:String) {
-		trace(Assets.hasLibrary(library));
-		if (Assets.getLibrary(library) == null)
 		{
 			@:privateAccess
 			if (!LimeAssets.libraryPaths.exists(library))
@@ -159,7 +152,7 @@ class LoadingState extends MusicBeatState
 		if(weekDir != null && weekDir.length > 0 && weekDir != '') directory = weekDir;
 
 		Paths.setCurrentLevel(directory);
-		trace('Setting asset folder to ' + directory);
+		trace('images/funkay/funkay.png' + directory);
 
 		#if NO_PRELOAD_ALL
 		var loaded:Bool = false;

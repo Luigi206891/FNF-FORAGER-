@@ -81,6 +81,9 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+			["Forager Mod"],
+			['Luigi',		'luigi',		'Programador,Coji Sprites Del Forager,Charter etc...',							'https://www.youtube.com/channel/UCbyIZHSFd3FsZexN-FZVWDQ',	'01DE00'],
+			['Angel-Gamer',		'gamer',		'Spriter y Beta Del Mod',							'https://www.youtube.com/channel/UCvXV1Tb5Q-CVkkhSq6_FHAQ',	'A4A5A5'],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',							'https://twitter.com/Shadow_Mario_',	'444444'],
 			['RiverOaken',			'riveroaken',		'Main Artist/Animator of Psych Engine',						'https://twitter.com/RiverOaken',		'C30085'],
@@ -205,7 +208,7 @@ class CreditsState extends MusicBeatState
 				}
 			}
 
-			if(controls.ACCEPT && (creditsStuff[curSelected][3] == null || creditsStuff[curSelected][3].length > 4)) {
+			if(controls.ACCEPT) {
 				CoolUtil.browserLoad(creditsStuff[curSelected][3]);
 			}
 			if (controls.BACK)
